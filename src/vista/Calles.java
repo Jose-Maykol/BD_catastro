@@ -5,7 +5,6 @@
  */
 package vista;
 
-
 import config.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +12,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Profesion extends javax.swing.JFrame {
+public class Calles extends javax.swing.JFrame {
 
     Conexion con = new Conexion();
     Connection cn;
@@ -22,17 +21,24 @@ public class Profesion extends javax.swing.JFrame {
     DefaultTableModel modelo;
     int id;
     String nom;
-    char estReg;
+    String estReg;
     int flagAdicionar = 0;
     int flagModificar = 0;
     int flagEliminar = 0;
     int flagInactivar = 0;
     int flagReactivar = 0;
     boolean mostrar = false;
-    public Profesion() {
+    
+    public Calles() {
         initComponents();
+        setLocationRelativeTo(null);
+        TextEstadoRegistro.setEditable(false);
+        TextEstadoRegistro.setEnabled(false);
+        Listar();
     }
 
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -159,13 +165,13 @@ public class Profesion extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel5.setText("MUNICIPIO");
+        jLabel5.setText("CALLE");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro Profesion"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro Calle"));
 
         jLabel1.setText("ID:");
 
-        jLabel2.setText("Nombre Profesion:");
+        jLabel2.setText("Nombre calle");
 
         jLabel4.setText("Estado de registro:");
 
@@ -212,11 +218,11 @@ public class Profesion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(TextEstadoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(TextEstadoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista"));
@@ -226,7 +232,7 @@ public class Profesion extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nombre", "Estado de registro"
+                "ID", "Nombre calle", "Estado de registro"
             }
         ));
         TablaDatos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -260,13 +266,15 @@ public class Profesion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(414, 414, 414)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -349,7 +357,7 @@ public class Profesion extends javax.swing.JFrame {
     }//GEN-LAST:event_TextIDActionPerformed
 
     private void TextEstadoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextEstadoRegistroActionPerformed
-// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_TextEstadoRegistroActionPerformed
 
     private void TablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDatosMouseClicked
@@ -359,7 +367,8 @@ public class Profesion extends javax.swing.JFrame {
         } else {
             id = Integer.parseInt((String) TablaDatos.getValueAt(fila, 0).toString());
             nom = (String) TablaDatos.getValueAt(fila, 1);
-            estReg = (char) TablaDatos.getValueAt(fila, 2);
+            estReg = (String) TablaDatos.getValueAt(fila, 2);
+
         }
     }//GEN-LAST:event_TablaDatosMouseClicked
 
@@ -380,26 +389,26 @@ public class Profesion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Profesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Profesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Profesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Profesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Profesion().setVisible(true);
+                new Calles().setVisible(true);
             }
         });
     }
     
     void Listar(){
-    String sql = "select * from municipios";
+    String sql = "select * from calles";
     try {
         cn = (Connection) con.getConnection();
         st = cn.createStatement();
@@ -407,17 +416,16 @@ public class Profesion extends javax.swing.JFrame {
         Object[] municipio = new Object[4];
         modelo = (DefaultTableModel) TablaDatos.getModel();
         while (rs.next()) {            
-            municipio[0] = rs.getInt("MunNum");
-            municipio[1] = rs.getString("MunNom");
-            municipio[2] = rs.getString("MunOd");
-            municipio[3] = rs.getString("MunEstReg");
+            municipio[0] = rs.getInt("CalCod");
+            municipio[1] = rs.getString("CalNom");
+            municipio[2] = rs.getString("CalEst");
             modelo.addRow(municipio);
         }
         TablaDatos.setModel(modelo);
     } catch (Exception e) {
         }
     }
-    void CargarDatos(String nom, char estReg) {
+    void CargarDatos(String nom, String estReg) {
             TextID.setText(""+id);
             TextNombre.setText(nom);
             TextEstadoRegistro.setText(""+estReg);
@@ -447,19 +455,20 @@ public class Profesion extends javax.swing.JFrame {
             // Adiciona un registro a la base de datos
             int id = Integer.parseInt(TextID.getText());
             String nom = TextNombre.getText();
-            int estReg = Integer.parseInt(TextEstadoRegistro.getText());
+            char estReg = TextEstadoRegistro.getText().charAt(0);
             try {
                 if (nom.equals("")) {
                     JOptionPane.showMessageDialog(null, "Debe Ingresar datos por favor");
                     LimpiarTabla(modelo);               
                 } else {
-                    String sql = "INSERT INTO municipios values( '"+id+"', '"+nom+"','"+od+"','"+estReg+"')";
+                    String sql = "INSERT INTO calles values( '"+id+"', '"+nom+"','"+estReg+"')";
                     cn = con.getConnection();
                     st = cn.createStatement();
                     st.executeUpdate(sql);
                     JOptionPane.showMessageDialog(null, "Municipio registrado con exito !!!");
                     LimpiarTabla(modelo);   
                 }
+                System.out.println("hola");
                 flagAdicionar = 0;
             } catch (Exception e) {
 
@@ -467,8 +476,8 @@ public class Profesion extends javax.swing.JFrame {
         }if (flagModificar == 1) {
             // Modifica un registro en la base de datos
             String nom = TextNombre.getText();
-            int estReg = Integer.parseInt(TextEstadoRegistro.getText());
-            String sql = "UPDATE municipios set MunNom='"+nom+"',MunOd='"+od+"',MunEstReg='"+estReg+"'where MunNum="+id;
+            char estReg = TextEstadoRegistro.getText().charAt(0);
+            String sql = "UPDATE calles set CalNom='"+nom+"',CalEst='"+estReg+"'where CalCod="+id;
             if (nom.equals("")) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar datos !!!");
             }else {
@@ -476,7 +485,7 @@ public class Profesion extends javax.swing.JFrame {
                     cn = con.getConnection();
                     st = cn.createStatement();
                     st.executeUpdate(sql);
-                    JOptionPane.showMessageDialog(null, "Datos muncipio modificado !!!");
+                    JOptionPane.showMessageDialog(null, "Datos de calle modificado !!!");
                     LimpiarTabla(modelo);
                     flagModificar = 0;
                 } catch (Exception e) {
@@ -485,16 +494,16 @@ public class Profesion extends javax.swing.JFrame {
             }      
         }if (flagEliminar == 1) {
             // Elimina un registro en la base de datos
-            String sql = "delete from municipios where MunNum=" + id;        
+            String sql = "delete from calles where CalCod=" + id;        
             int fila = TablaDatos.getSelectedRow();
             if (fila == -1) {
-                JOptionPane.showMessageDialog(null,"Municipio no seleccionado");
+                JOptionPane.showMessageDialog(null,"Calle no seleccionada");
             } else {
                     try {
                         cn = con.getConnection();
                         st = cn.createStatement();
                         st.executeUpdate(sql);
-                        JOptionPane.showMessageDialog(null, "Municipio eliminado !!!");
+                        JOptionPane.showMessageDialog(null, "Calle eliminada !!!");
                         LimpiarTabla(modelo);
                         LiberarDatos();
                         flagEliminar = 0;
@@ -505,9 +514,10 @@ public class Profesion extends javax.swing.JFrame {
         }if (flagInactivar == 1) {
             // Inactiva un registro en la base de datos
             String nom = TextNombre.getText();
-            int estReg = Integer.parseInt(TextEstadoRegistro.getText());
-            String sql = "UPDATE municipios set MunEstReg= 0 where MunNum="+id;
-            if (estReg == 'I') {
+            estReg = TextEstadoRegistro.getText();
+            System.out.println(estReg);
+            String sql = "UPDATE calles set CalEst= 'I' where CalCod="+id;
+            if (estReg == "I") {
                 JOptionPane.showMessageDialog(null, "El registro ya esta inactivado!!!");
             }else {
                 try {
@@ -524,9 +534,9 @@ public class Profesion extends javax.swing.JFrame {
         }if (flagReactivar == 1) {
             // Reactiva un registro en la base de datos
             String nom = TextNombre.getText();
-            int estReg = Integer.parseInt(TextEstadoRegistro.getText());
-            String sql = "UPDATE municipios set MunEstReg= 1 where MunNum="+id;
-            if (estReg == 1) {
+            estReg = TextEstadoRegistro.getText();
+            String sql = "UPDATE calles set CalEst= 'A' where CalCod="+id;
+            if (estReg == "A") {
                 JOptionPane.showMessageDialog(null, "El registro ya esta activado!!!");
             }else {
                 try {
@@ -562,11 +572,9 @@ public class Profesion extends javax.swing.JFrame {
     void Limpiar() {
         TextID.setText("");
         TextNombre.setText("");
-        TextEstadoRegistro.setText("1");
+        TextEstadoRegistro.setText("A");
         TextID.requestFocus();
     }
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnActualizar;
     private javax.swing.JButton BtnAgregar;
