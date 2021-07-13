@@ -28,10 +28,11 @@ public class Profesion extends javax.swing.JFrame {
     int flagEliminar = 0;
     int flagInactivar = 0;
     int flagReactivar = 0;
-    boolean mostrar = false;
     
     public Profesion() {
         initComponents();
+        setLocationRelativeTo(null);
+        Listar();
     }
 
     @SuppressWarnings("unchecked")
@@ -46,7 +47,7 @@ public class Profesion extends javax.swing.JFrame {
         BtnInactivar = new javax.swing.JButton();
         BtnActualizar = new javax.swing.JButton();
         BtnReactivar = new javax.swing.JButton();
-        BtnAgregar4 = new javax.swing.JButton();
+        BtnSalir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -112,10 +113,10 @@ public class Profesion extends javax.swing.JFrame {
             }
         });
 
-        BtnAgregar4.setText("SALIR");
-        BtnAgregar4.addActionListener(new java.awt.event.ActionListener() {
+        BtnSalir.setText("SALIR");
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAgregar4ActionPerformed(evt);
+                BtnSalirActionPerformed(evt);
             }
         });
 
@@ -138,7 +139,7 @@ public class Profesion extends javax.swing.JFrame {
                     .addComponent(BtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnAgregar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -156,11 +157,11 @@ public class Profesion extends javax.swing.JFrame {
                     .addComponent(BtnInactivar, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                     .addComponent(BtnReactivar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnAgregar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BtnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jLabel5.setText("MUNICIPIO");
+        jLabel5.setText("PROFESION");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro Profesion"));
 
@@ -177,6 +178,7 @@ public class Profesion extends javax.swing.JFrame {
         });
 
         TextEstadoRegistro.setEditable(false);
+        TextEstadoRegistro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TextEstadoRegistro.setText("A");
         TextEstadoRegistro.setEnabled(false);
         TextEstadoRegistro.addActionListener(new java.awt.event.ActionListener() {
@@ -199,24 +201,24 @@ public class Profesion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextEstadoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextEstadoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(165, 165, 165))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(2, 2, 2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(TextID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(TextEstadoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextEstadoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -227,7 +229,7 @@ public class Profesion extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nombre", "Estado de registro"
+                "ID", "Nombre", "ER"
             }
         ));
         TablaDatos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -236,13 +238,21 @@ public class Profesion extends javax.swing.JFrame {
             }
         });
         jScrollPane5.setViewportView(TablaDatos);
+        if (TablaDatos.getColumnModel().getColumnCount() > 0) {
+            TablaDatos.getColumnModel().getColumn(0).setMinWidth(70);
+            TablaDatos.getColumnModel().getColumn(0).setPreferredWidth(70);
+            TablaDatos.getColumnModel().getColumn(0).setMaxWidth(70);
+            TablaDatos.getColumnModel().getColumn(2).setMinWidth(40);
+            TablaDatos.getColumnModel().getColumn(2).setPreferredWidth(40);
+            TablaDatos.getColumnModel().getColumn(2).setMaxWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -279,10 +289,10 @@ public class Profesion extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -297,20 +307,29 @@ public class Profesion extends javax.swing.JFrame {
 
     private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
         flagModificar = 1;
-        mostrar = true;
+        int fila = TablaDatos.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null,"Profesion no seleccionada");
+        }
         //Limpiar();
         CargarDatos(nom, estReg);
         LiberarDatos();
+        TextID.setEnabled(false);
+        
     }//GEN-LAST:event_BtnModificarActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         flagEliminar = 1;
         CargarDatos(nom, estReg);
-        if (flagEliminar == 1) {
+        int fila = TablaDatos.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null,"Profesion no seleccionada");
+        }if (flagEliminar == 1) {
             BloquearDatos();
         }else {
             LiberarDatos();
         }
+        
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -320,7 +339,10 @@ public class Profesion extends javax.swing.JFrame {
     private void BtnInactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInactivarActionPerformed
         flagInactivar = 1;
         CargarDatos(nom, estReg);
-        if (flagInactivar == 1) {
+        int fila = TablaDatos.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null,"Profesion no seleccionada");
+        }if (flagInactivar == 1) {
             BloquearDatos();
         }else {
             LiberarDatos();
@@ -336,16 +358,20 @@ public class Profesion extends javax.swing.JFrame {
     private void BtnReactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReactivarActionPerformed
         flagReactivar = 1;
         CargarDatos(nom, estReg);
-        if (flagReactivar == 1) {
+        int fila = TablaDatos.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null,"Profesion no seleccionada");
+        }if (flagReactivar == 1) {
             BloquearDatos();
         }else {
             LiberarDatos();
         }
     }//GEN-LAST:event_BtnReactivarActionPerformed
 
-    private void BtnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregar4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnAgregar4ActionPerformed
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void TextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextIDActionPerformed
         // TODO add your handling code here:
@@ -403,17 +429,17 @@ public class Profesion extends javax.swing.JFrame {
     }
     
     void Listar(){
-    String sql = "select * from profesion";
+    String sql = "select * from profesiones";
     try {
         cn = (Connection) con.getConnection();
         st = cn.createStatement();
         rs = st.executeQuery(sql);
-        Object[] municipio = new Object[4];
+        Object[] municipio = new Object[3];
         modelo = (DefaultTableModel) TablaDatos.getModel();
         while (rs.next()) {            
             municipio[0] = rs.getInt("ProCod");
             municipio[1] = rs.getString("ProNom");
-            municipio[2] = rs.getString("ProEst");
+            municipio[2] = rs.getString("ProEstReg");
             modelo.addRow(municipio);
         }
         TablaDatos.setModel(modelo);
@@ -427,9 +453,10 @@ public class Profesion extends javax.swing.JFrame {
     }
     
     void LimpiarTabla(DefaultTableModel model) {
-        for (int i = 0; i <= TablaDatos.getRowCount(); i++) {
+        for (int i = 0; i < TablaDatos.getRowCount(); i++) {
             modelo.removeRow(i);
             i = i - 1;
+            
         }
     }
     void BloquearDatos() {
@@ -446,91 +473,114 @@ public class Profesion extends javax.swing.JFrame {
         TextNombre.setEnabled(true);
     }
     void Actualizar() {
+        if (flagAdicionar == 0 && 
+                flagEliminar == 0 && 
+                flagReactivar == 0 && 
+                flagInactivar == 0 &&
+                flagModificar ==0
+                ) {
+            JOptionPane.showMessageDialog(null, "Usted no ha seleccionado ninguna opcion!!!");
+            System.out.println(flagAdicionar + flagEliminar + flagInactivar + flagModificar + flagReactivar);
+            LimpiarTabla(modelo);
+        }
         if (flagAdicionar == 1) {
             // Adiciona un registro a la base de datos
-            int id = Integer.parseInt(TextID.getText());
+            //int id = Integer.parseInt(TextID.getText());
+            String id = TextID.getText();
             String nom = TextNombre.getText();
             char estReg = TextEstadoRegistro.getText().charAt(0);
             try {
-                if (nom.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Debe Ingresar datos por favor");
-                    LimpiarTabla(modelo);               
-                } else {
-                    String sql = "INSERT INTO profesion values( '"+id+"', '"+nom+"','"+estReg+"')";
+                if (nom.equals("") ||  id.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar datos por favor");               
+                }if (nom.length() > 40 || id.length() > 4) {
+                    if (id.length() > 4)
+                        JOptionPane.showMessageDialog(null, "Por favor ingrese un ID de menos de 4 digitos");
+                    if (nom.length() > 40)
+                        JOptionPane.showMessageDialog(null, "Por favor ingrese una profesion con menos de 40 caracteres");
+                }else {
+                    String sql = "INSERT INTO profesiones values( '"+id+"', '"+nom+"','"+estReg+"')";
                     cn = con.getConnection();
                     st = cn.createStatement();
                     st.executeUpdate(sql);
-                    JOptionPane.showMessageDialog(null, "Profesion registrado con exito !!!");
+                    JOptionPane.showMessageDialog(null, "Profesion registrada con exito !!!");
                     LimpiarTabla(modelo);   
                 }
-                flagAdicionar = 0;
             } catch (Exception e) {
 
             }
+            LimpiarTabla(modelo); 
+            flagAdicionar = 0;
         }if (flagModificar == 1) {
             // Modifica un registro en la base de datos
             String nom = TextNombre.getText();
             char estReg = TextEstadoRegistro.getText().charAt(0);
-            String sql = "UPDATE profesion set ProNom='"+nom+"',ProEst='"+estReg+"'where ProCod="+id;
+            String sql = "UPDATE profesiones set ProNom='"+nom+"',ProEstReg='"+estReg+"'where ProCod="+id;
             if (nom.equals("")) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar datos !!!");
+                TextID.setEnabled(true);
+            }if (nom.length() > 40) {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese una profesion con menos de 40 caracteres"); 
             }else {
                 try {
                     cn = con.getConnection();
                     st = cn.createStatement();
                     st.executeUpdate(sql);
                     JOptionPane.showMessageDialog(null, "Datos de profesion modificado !!!");
-                    LimpiarTabla(modelo);
-                    flagModificar = 0;
+                    TextID.setEnabled(true);
                 } catch (Exception e) {
 
                 }
-            }      
+            }  
+            LimpiarTabla(modelo);
+            flagModificar = 0;
         }if (flagEliminar == 1) {
             // Elimina un registro en la base de datos
-            String sql = "delete from profesion where ProCod=" + id;        
-            int fila = TablaDatos.getSelectedRow();
-            if (fila == -1) {
-                JOptionPane.showMessageDialog(null,"Calle no seleccionada");
+            String sql = "UPDATE profesiones set ProEstReg= '*' where ProCod="+id;       
+            estReg = TextEstadoRegistro.getText();
+            if (estReg.equals("*")) {
+                JOptionPane.showMessageDialog(null,"Este registro ya ha sido eliminado");
             } else {
                     try {
                         cn = con.getConnection();
                         st = cn.createStatement();
                         st.executeUpdate(sql);
-                        JOptionPane.showMessageDialog(null, "Calle eliminada !!!");
-                        LimpiarTabla(modelo);
+                        JOptionPane.showMessageDialog(null, "Profesion eliminada !!!");
                         LiberarDatos();
-                        flagEliminar = 0;
+                        
                     } catch (Exception e) {
                         
                     }
             }   
+            LimpiarTabla(modelo);
+            flagEliminar = 0;
         }if (flagInactivar == 1) {
             // Inactiva un registro en la base de datos
             String nom = TextNombre.getText();
             estReg = TextEstadoRegistro.getText();
             System.out.println(estReg);
-            String sql = "UPDATE profesion set ProEst= 'I' where ProCod="+id;
-            if (estReg == "I") {
-                JOptionPane.showMessageDialog(null, "El registro ya esta inactivado!!!");
+            String sql = "UPDATE profesiones set ProEstReg= 'I' where ProCod="+id;
+            if (estReg.equals("I")) {
+                JOptionPane.showMessageDialog(null, "Este registro ya esta inactivado!!!");
             }else {
                 try {
                     cn = con.getConnection();
                     st = cn.createStatement();
                     st.executeUpdate(sql);
                     JOptionPane.showMessageDialog(null, "Registro inactivado !!!");
-                    LimpiarTabla(modelo);
                     LiberarDatos();
                 } catch (Exception e) {
 
                 }
             }
+            flagInactivar = 0;
+            LimpiarTabla(modelo);
         }if (flagReactivar == 1) {
             // Reactiva un registro en la base de datos
             String nom = TextNombre.getText();
             estReg = TextEstadoRegistro.getText();
-            String sql = "UPDATE profesion set ProEst= 'A' where ProCod="+id;
-            if (estReg == "A") {
+            String sql = "UPDATE profesiones set ProEstReg= 'A' where ProCod="+id;
+            System.out.println(estReg);
+            if (estReg.equals("A")) {
                 JOptionPane.showMessageDialog(null, "El registro ya esta activado!!!");
             }else {
                 try {
@@ -538,12 +588,14 @@ public class Profesion extends javax.swing.JFrame {
                     st = cn.createStatement();
                     st.executeUpdate(sql);
                     JOptionPane.showMessageDialog(null, "Registro reactivado !!!");
-                    LimpiarTabla(modelo);
                     LiberarDatos();
+                    
                 } catch (Exception e) {
 
                 }
             }
+            flagReactivar = 0;
+            LimpiarTabla(modelo);
         }
     }
     void Cancelar() {
@@ -572,12 +624,12 @@ public class Profesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnActualizar;
     private javax.swing.JButton BtnAgregar;
-    private javax.swing.JButton BtnAgregar4;
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnInactivar;
     private javax.swing.JButton BtnModificar;
     private javax.swing.JButton BtnReactivar;
+    private javax.swing.JButton BtnSalir;
     private javax.swing.JTable TablaDatos;
     private javax.swing.JTextField TextEstadoRegistro;
     private javax.swing.JTextField TextID;

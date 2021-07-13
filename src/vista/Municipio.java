@@ -23,7 +23,7 @@ public class Municipio extends javax.swing.JFrame {
     int flagEliminar = 0;
     int flagInactivar = 0;
     int flagReactivar = 0;
-    boolean mostrar = false;
+    //boolean mostrar = false;
     
     public Municipio() {
         initComponents();
@@ -314,7 +314,7 @@ public class Municipio extends javax.swing.JFrame {
 
     private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
         flagModificar = 1;
-        mostrar = true;
+        //mostrar = true;
         //Limpiar();
         CargarDatos(nom, od, estReg);
         LiberarDatos();
@@ -348,6 +348,7 @@ public class Municipio extends javax.swing.JFrame {
         Actualizar();
         Listar();
         Cancelar();
+        
     }//GEN-LAST:event_BtnActualizarActionPerformed
 
     private void BtnReactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReactivarActionPerformed
@@ -411,7 +412,7 @@ public class Municipio extends javax.swing.JFrame {
             TextEstadoRegistro.setText(""+estReg);
     }
     
-    void LimpiarTabla(DefaultTableModel model) {
+    void LimpiarTabla(DefaultTableModel modelo) {
         for (int i = 0; i <= TablaDatos.getRowCount(); i++) {
             modelo.removeRow(i);
             i = i - 1;
@@ -514,6 +515,7 @@ public class Municipio extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Registro inactivado !!!");
                     LimpiarTabla(modelo);
                     LiberarDatos();
+                    flagInactivar = 0;
                 } catch (Exception e) {
 
                 }
@@ -534,10 +536,21 @@ public class Municipio extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Registro reactivado !!!");
                     LimpiarTabla(modelo);
                     LiberarDatos();
+                    flagReactivar = 0;
                 } catch (Exception e) {
 
                 }
             }
+        }if (flagAdicionar == 0 && 
+                flagEliminar == 0 && 
+                flagReactivar == 0 && 
+                flagInactivar == 0 &&
+                flagModificar ==0
+                ) {
+            JOptionPane.showMessageDialog(null, "Usted no ha seleccionado ninguna opcion!!!");
+            System.out.println(flagAdicionar + flagEliminar + flagInactivar + flagModificar + flagReactivar);
+            
+            //LimpiarTabla(modelo);
         }
     }
     void Cancelar() {
