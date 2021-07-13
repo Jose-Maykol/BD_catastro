@@ -196,7 +196,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Registro Profesion"/>
+            <TitledBorder title="Registro de profesion"/>
           </Border>
         </Property>
       </Properties>
@@ -252,7 +252,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre Profesion:"/>
+            <Property name="text" type="java.lang.String" value="Nombre de profesion:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -284,7 +284,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Lista"/>
+            <TitledBorder title="Tabla Profesion"/>
           </Border>
         </Property>
       </Properties>

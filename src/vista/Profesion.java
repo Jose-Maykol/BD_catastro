@@ -163,11 +163,11 @@ public class Profesion extends javax.swing.JFrame {
 
         jLabel5.setText("PROFESION");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro Profesion"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de profesion"));
 
         jLabel1.setText("ID:");
 
-        jLabel2.setText("Nombre Profesion:");
+        jLabel2.setText("Nombre de profesion:");
 
         jLabel4.setText("Estado de registro:");
 
@@ -222,7 +222,7 @@ public class Profesion extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista"));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla Profesion"));
 
         TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -393,9 +393,6 @@ public class Profesion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TablaDatosMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -485,7 +482,6 @@ public class Profesion extends javax.swing.JFrame {
         }
         if (flagAdicionar == 1) {
             // Adiciona un registro a la base de datos
-            //int id = Integer.parseInt(TextID.getText());
             String id = TextID.getText();
             String nom = TextNombre.getText();
             char estReg = TextEstadoRegistro.getText().charAt(0);
