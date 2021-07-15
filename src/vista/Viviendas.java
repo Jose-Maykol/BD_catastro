@@ -79,7 +79,7 @@ public class Viviendas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de codigo postal"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de vivienda"));
 
         jLabel1.setText("Vivienda numero:");
 
@@ -692,7 +692,6 @@ public class Viviendas extends javax.swing.JFrame {
             LoadZonaUrbanizacion();
         }if (flagInactivar == 1) {
             // Inactiva un registro en la base de datos
-            //String nom = TextNombre.getText();
             estReg = TextEstadoRegistro.getText();
             System.out.println(estReg);
             String sql = "UPDATE viviendas set VivEstReg= 'I' where VivNum="+id;
@@ -719,7 +718,6 @@ public class Viviendas extends javax.swing.JFrame {
             LoadZonaUrbanizacion();
         }if (flagReactivar == 1) {
             // Reactiva un registro en la base de datos
-            //String nom = TextNombre.getText();
             estReg = TextEstadoRegistro.getText();
             String sql = "UPDATE viviendas set VivEstReg= 'A' where VivNum="+id;
             System.out.println(estReg);
@@ -806,7 +804,6 @@ public class Viviendas extends javax.swing.JFrame {
             pst = cn.prepareStatement(sql); 
             rs = pst.executeQuery(); 
             TextCodPos.removeAllItems();
-            //System.err.println("aqui no xD");
             String resp;
             while (rs.next()) { 
                     resp = rs.getString(1) +  " "+ rs.getString(2);
